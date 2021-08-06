@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://kit.fontawesome.com/744ce35a6c.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="src/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap"
+      rel="stylesheet"
+    />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Around the World</title>
+  </head>
+  <body>
+    <div class="container my-container">
+      <div class="row">
+        <div class="col-12 weather-title">
+          <h1>Weather</h1>
+          <h2>Around the World</h2>
+        </div>
+
+        <div class="col-4 current-location">
+          <span class="current-location-name" id="current-city"> Montreal </span
+          ><br />
+          <span class="last-updated" id="date"> Updated on</span>
+          <div class="current-location-description">
+            <span class="current-description" id="current-description"></span>
+          </div>
+          <div class="col-4 feels-like">
+            <span class="feels-like" id="feels-like"></span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-4 current-weather">
+            <span class="current-emoji" id="current-emoji"> ☀️</span>
+            <span class="current-temp">
+              <span id="current-temp"></span>
+            </span>
+            <span class="celsius-unit" id="celsius-unit">°C</span>
+            <span class="fahrenheit-unit">|°F</span>
+          </div>
+          <div class="col-3 align-items-start weather-details">
+            <ul>
+              <li id="precipitation">Precipitation: 15%</li>
+              <li>Humidity: <span id="humidity"></span></li>
+              <li>Wind: <span id="wind">18</span>km/h</li>
+            </ul>
+          </div>
+          <div class="col-5">
+            <form id="search-for-destination">
+              <div class="form-group fg--search search-bar">
+                <input
+                  type="text"
+                  class="input"
+                  placeholder="Find your destination"
+                  id="search-destination-input"
+                />
+                <button type="submit">
+                  <i class="fa fa-search magnifying-glass"></i>
+                </button>
+                <div class="current-location-button">
+                  <button id="current-location-button">
+                    <i class="fas fa-map-pin"></i>
+                  </button>
+                </div>
+              </div>
+            </form>
+            <div class="row">
+              <div class="col-3 other-destinations">
+                <h3 class="destination-title">Other Destinations</h3>
+                <ul>
+                  <li class="other-destinations-list">Tokyo</li>
+                  <li class="other-destinations-list">Amsterdam</li>
+                  <li class="other-destinations-list">Buenos Aires</li>
+                  <li class="other-destinations-list">Florence</li>
+                  <li class="other-destinations-list">London</li>
+                </ul>
+                <img
+                  src="images/plane.svg"
+                  alt="airplane with clouds"
+                  class="plane-image"
+                  width="200"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- The following graph is a screencap from Google as a placeholder because I don't know how to make that yet. 
+        The corresponding hour of the day would be at the bottom of each temperature.  -->
+      <div class="graph">
+        <img src="images/graph.png" alt="temperature graph" class="graph" />
+      </div>
+      <div class="col forecast">
+        <div class="card-group">
+          <div class="card" style="width: 3rem">
+            <div class="card-body">
+              <h4 class="card-title">Tue</h4>
+              <p class="card-text">
+                <span class="emoji">☀️</span>
+
+                <br />
+                <span class="temperature-high"> 27°</span> 19°
+              </p>
+            </div>
+          </div>
+          <div class="card" style="width: 3rem">
+            <div class="card-body">
+              <h4 class="card-title">Wed</h4>
+              <p class="card-text">
+                <span class="emoji">🌩</span>
+
+                <br />
+                <span class="temperature-high"> 30°</span> 21°
+              </p>
+            </div>
+          </div>
+          <div class="card" style="width: 3rem">
+            <div class="card-body">
+              <h4 class="card-title">Thu</h4>
+              <p class="card-text">
+                <span class="emoji">⛅️</span>
+                <br />
+                <span class="temperature-high">26°</span> 18°
+              </p>
+            </div>
+          </div>
+          <div class="card" style="width: 3rem">
+            <div class="card-body">
+              <h4 class="card-title">Fri</h4>
+              <p class="card-text">
+                <span class="emoji">⛅️</span>
+
+                <br />
+                <span class="temperature-high">26°</span> 19°
+              </p>
+            </div>
+          </div>
+          <div class="card" style="width: 3rem">
+            <div class="card-body">
+              <h4 class="card-title">Sat</h4>
+              <p class="card-text">
+                <span class="emoji">☀️</span>
+
+                <br />
+                <span class="temperature-high">30°</span> 21°
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- This is where I'd like to put a gps map with live info but I don't know how to do that yet -->
+      <div class="row">
+        <div class="col">
+          <img src="images/map.svg" alt="Map" width="200px" class="map" />
+        </div>
+      </div>
+    </div>
+    <script src="src/script.js"></script>
+  </body>
+</html>

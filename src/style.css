@@ -1,0 +1,215 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.5;
+}
+h1,
+h2 {
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+}
+h1 {
+  letter-spacing: 3px;
+}
+h2 {
+  font-size: 40px;
+  font-family: "Dancing Script", cursive;
+}
+
+button {
+  background: transparent;
+  border: none;
+  padding: 10px 5px;
+}
+
+ul {
+  padding: 0;
+}
+li {
+  list-style: none;
+  padding: 0;
+}
+
+.my-container {
+  padding: 30px 30px 0;
+  margin: 50px auto;
+  max-height: 1050px;
+  max-width: 60%;
+  border-radius: 20px;
+  border: 2px solid black;
+  background: linear-gradient(
+    178.6deg,
+    rgb(232, 245, 253) 3.3%,
+    rgb(252, 253, 255) 109.6%
+  );
+}
+
+.weather-title {
+  text-align: center;
+  margin-top: 0 auto;
+  padding: 10px auto;
+  font-size: 25px;
+  white-space: nowrap;
+}
+
+.current-location-name {
+  font-size: 60px;
+  font-weight: bold;
+  position: relative;
+  right: 5px;
+  text-transform: capitalize;
+}
+
+.last-updated {
+  position: relative;
+  bottom: 15px;
+  font-size: 11px;
+  color: grey;
+}
+
+.current-location {
+  font-size: 15px;
+  position: relative;
+  top: 20px;
+  left: 40px;
+}
+.current-emoji {
+  font-size: 70px;
+  position: relative;
+  top: 10px;
+}
+
+.current-weather {
+  position: relative;
+  bottom: 10px;
+  left: 30px;
+  font-size: 40px;
+}
+
+.current-temp {
+  font-size: 60px;
+}
+
+.current-description {
+  text-transform: capitalize;
+  position: relative;
+  bottom: 5px;
+  font-size: 23px;
+  color: grey;
+}
+
+.feels-like {
+  position: relative;
+  color: grey;
+  top: 40px;
+  left: 48px;
+  font-size: 12px;
+}
+.fahrenheit-unit,
+.celsius-unit {
+  font-size: 20px;
+  position: relative;
+  bottom: 20px;
+}
+
+.fahrenheit-unit:hover {
+  cursor: pointer;
+}
+.weather-details {
+  font-size: 15px;
+  position: relative;
+  top: 50px;
+  left: 125px;
+  letter-spacing: 1px;
+}
+
+.search-bar {
+  position: relative;
+  left: 130px;
+  bottom: 100px;
+}
+
+.other-destinations {
+  text-align: center;
+  font-size: 20px;
+  width: 300px;
+  position: relative;
+  border: 2px solid black;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
+  left: 130px;
+  bottom: 90px;
+  padding: 10px;
+  border-radius: 10px;
+  background: radial-gradient(
+    circle at 0.7% 1%,
+    rgb(215, 248, 247) 0%,
+    rgb(102, 188, 239) 100.2%
+  );
+}
+
+.other-destinations-list {
+  text-align: center;
+  padding: 8px 0;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.other-destinations-list:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.destination-title {
+  font-family: "Dancing Script", cursive;
+  font-size: 30px;
+  font-weight: bold;
+  letter-spacing: 0;
+}
+
+.plane-image {
+  position: relative;
+  display: block;
+  margin: 0 auto;
+}
+
+.current-location-button {
+  display: inline;
+}
+
+.graph {
+  text-align: center;
+  position: relative;
+  bottom: 160px;
+  right: 30px;
+  max-width: 77%;
+}
+
+.forecast {
+  max-width: 600px;
+  text-align: center;
+  position: relative;
+  bottom: 300px;
+  left: 60px;
+}
+.temperature-high {
+  font-weight: bold;
+}
+.card {
+  background: transparent;
+  border: none;
+}
+
+.emoji {
+  font-size: 30px;
+}
+.map {
+  border: 2px solid black;
+  width: 800px;
+  height: 300px;
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  bottom: 250px;
+  border-radius: 10px;
+  padding: 0;
+  background: transparent;
+}
