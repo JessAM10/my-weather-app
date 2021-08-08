@@ -213,3 +213,12 @@ li {
   padding: 0;
   background: transparent;
 }
+
+.open-source {
+  position: relative;
+  bottom: 240px;
+}
+
+.github-link {
+  text-decoration: none;
+}
