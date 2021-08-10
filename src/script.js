@@ -35,8 +35,6 @@ function formatDate(timestamp) {
 // Displays the name of the city, temperature, and more weather details about the city that was submitted in the search engine
 
 function showWeather(response) {
-  console.log(response);
-
   let cityName = document.querySelector("#current-city");
   let currentTemp = document.querySelector("#current-temp");
   let feelsLike = document.querySelector("#feels-like");
@@ -44,6 +42,7 @@ function showWeather(response) {
   let currentHumidity = document.querySelector("#humidity");
   let windSpeed = document.querySelector("#wind");
   let lastUpdated = document.querySelector("#date");
+  let currentIcon = document.querySelector("#current-icon");
 
   cityName.innerHTML = `${response.data.name}`;
 
@@ -60,6 +59,11 @@ function showWeather(response) {
   windSpeed.innerHTML = `${Math.round((response.data.wind.speed * 18) / 5)}`;
 
   lastUpdated.innerHTML = formatDate(response.data.dt * 1000);
+
+  currentIcon.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
 }
 
 // Retrieves the weather information from OpenWeather API for the city submitted into the search engine

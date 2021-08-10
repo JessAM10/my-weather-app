@@ -39,8 +39,8 @@ li {
   border: 2px solid black;
   background: linear-gradient(
     178.6deg,
-    rgb(232, 245, 253) 3.3%,
-    rgb(252, 253, 255) 109.6%
+    rgb(177, 223, 252) 3.3%,
+    rgb(226, 235, 255) 109.6%
   );
 }
 
@@ -64,7 +64,7 @@ li {
   position: relative;
   bottom: 15px;
   font-size: 11px;
-  color: grey;
+  color: #808080;
 }
 
 .current-location {
@@ -73,8 +73,8 @@ li {
   top: 20px;
   left: 40px;
 }
-.current-emoji {
-  font-size: 70px;
+.current-icon {
+  font-size: 80px;
   position: relative;
   top: 10px;
 }
@@ -88,21 +88,28 @@ li {
 
 .current-temp {
   font-size: 60px;
+  position: relative;
+  top: 20px;
 }
 
+.fahrenheit-unit,
+.celsius-unit {
+  position: relative;
+  top: 1px;
+}
 .current-description {
   text-transform: capitalize;
   position: relative;
   bottom: 5px;
   font-size: 23px;
-  color: grey;
+  color: #808080;
 }
 
 .feels-like {
   position: relative;
-  color: grey;
-  top: 40px;
-  left: 48px;
+  color: #808080;
+  top: 45px;
+  left: 50px;
   font-size: 12px;
 }
 .fahrenheit-unit,
