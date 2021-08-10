@@ -108,20 +108,28 @@ li {
 .feels-like {
   position: relative;
   color: #808080;
-  top: 45px;
+  top: 43px;
   left: 50px;
   font-size: 12px;
 }
 .fahrenheit-unit,
-.celsius-unit {
+.celsius-unit,
+.units {
   font-size: 20px;
   position: relative;
-  bottom: 20px;
+  text-decoration: none;
 }
 
 .fahrenheit-unit:hover {
   cursor: pointer;
+  text-decoration: none;
 }
+
+.current-weather .active {
+  color: black;
+  cursor: default;
+}
+
 .weather-details {
   font-size: 15px;
   position: relative;

@@ -44,9 +44,11 @@ function showWeather(response) {
   let lastUpdated = document.querySelector("#date");
   let currentIcon = document.querySelector("#current-icon");
 
+  celsiusTemperature = response.data.main.temp;
+
   cityName.innerHTML = `${response.data.name}`;
 
-  currentTemp.innerHTML = Math.round(`${response.data.main.temp}`);
+  currentTemp.innerHTML = Math.round(`${celsiusTemperature}`);
 
   feelsLike.innerHTML = `Feels like ${Math.round(
     response.data.main.feels_like
@@ -121,3 +123,32 @@ function getCurrentLocation(event) {
 
 let currentLocationButton = document.querySelector("#current-location-button");
 currentLocationButton.addEventListener("click", getCurrentLocation);
+
+// Converts temperature to Fahrenheit
+
+function showFahrenheitTemperature(event) {
+  event.preventDefault();
+  let currentTemp = document.querySelector("#current-temp");
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  currentTemp.innerHTML = Math.round(fahrenheitTemperature);
+}
+
+let fahrenheitLink = document.querySelector("#fahrenheit-unit");
+fahrenheitLink.addEventListener("click", showFahrenheitTemperature);
+
+// Converts temperature to Celsius
+
+function showCelsiusTemperature(event) {
+  event.preventDefault();
+  let currentTemp = document.querySelector("#current-temp");
+  currentTemp.innerHTML = Math.round(celsiusTemperature);
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
+}
+
+let celsiusTemperature = null;
+
+let celsiusLink = document.querySelector("#celsius-unit");
+celsiusLink.addEventListener("click", showCelsiusTemperature);
