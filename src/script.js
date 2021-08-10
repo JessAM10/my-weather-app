@@ -1,6 +1,7 @@
 // Displays current date and time.
 
-function formatDate(date) {
+function formatDate(timestamp) {
+  let now = new Date();
   let months = [
     "Jan",
     "Feb",
@@ -30,9 +31,6 @@ function formatDate(date) {
   let dayNumber = now.getDate();
   return `Updated on ${day}, ${month} ${dayNumber}, ${year} ${hour}:${minutes}`;
 }
-let now = new Date();
-let lastUpdated = document.querySelector("#date");
-lastUpdated.innerHTML = formatDate(now);
 
 // Displays the name of the city, temperature, and more weather details about the city that was submitted in the search engine
 
@@ -44,6 +42,8 @@ function showWeather(response) {
   let feelsLike = document.querySelector("#feels-like");
   let currentDescription = document.querySelector("#current-description");
   let currentHumidity = document.querySelector("#humidity");
+  let windSpeed = document.querySelector("#wind");
+  let lastUpdated = document.querySelector("#date");
 
   cityName.innerHTML = `${response.data.name}`;
 
@@ -56,6 +56,10 @@ function showWeather(response) {
   currentDescription.innerHTML = `${response.data.weather[0].description}`;
 
   currentHumidity.innerHTML = `Humidity: ${response.data.main.humidity}%`;
+
+  windSpeed.innerHTML = `${response.data.main.wind}`;
+
+  lastUpdated.innerHTML = formatDate(response.data.dt * 1000);
 }
 
 // Retrieves the weather information from OpenWeather API for the city submitted into the search engine
