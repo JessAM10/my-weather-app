@@ -1,7 +1,7 @@
 // Displays current date and time.
 
 function formatDate(timestamp) {
-  let now = new Date();
+  let now = new Date(timestamp);
   let months = [
     "Jan",
     "Feb",
