@@ -57,7 +57,7 @@ function showWeather(response) {
 
   currentHumidity.innerHTML = `Humidity: ${response.data.main.humidity}%`;
 
-  windSpeed.innerHTML = `${response.data.main.wind}`;
+  windSpeed.innerHTML = `${Math.round((response.data.wind.speed * 18) / 5)}`;
 
   lastUpdated.innerHTML = formatDate(response.data.dt * 1000);
 }
