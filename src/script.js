@@ -152,3 +152,29 @@ let celsiusTemperature = null;
 
 let celsiusLink = document.querySelector("#celsius-unit");
 celsiusLink.addEventListener("click", showCelsiusTemperature);
+
+// Displays Weather Forecast
+
+function showWeatherForecast() {
+  let forecast = document.querySelector("#weather-forecast");
+  let forecastHTML = `<div class="row">`;
+  let days = ["Thu", "Fri", "Sat", "Sun"];
+
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `<div class="col-2">
+      <div class="weather-forecast-date">Thu</div>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Sun.svg" alt="" width="36">
+       <div class="weather-forecast-temperature"> <span class="temperature-high">  18°</span>
+       <span class="temperature-low">12°</span>
+       </div>
+    </div>
+`;
+    forecastHTML = forecastHTML + `</div>`;
+
+    forecast.innerHTML = forecastHTML;
+  });
+}
+
+showWeatherForecast();

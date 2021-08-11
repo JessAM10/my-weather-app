@@ -208,10 +208,6 @@ li {
 .temperature-high {
   font-weight: bold;
 }
-.card {
-  background: transparent;
-  border: none;
-}
 
 .emoji {
   font-size: 30px;
