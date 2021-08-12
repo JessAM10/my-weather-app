@@ -34,6 +34,12 @@ function formatDate(timestamp) {
 
 // Displays the name of the city, temperature, and more weather details about the city that was submitted in the search engine
 
+function getForecast(coordinates) {
+  let apiKey = "0ced109d1b3107e21ab8ab47c9cb6bab";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(showWeatherForecast);
+}
+
 function showWeather(response) {
   let cityName = document.querySelector("#current-city");
   let currentTemp = document.querySelector("#current-temp");
@@ -67,6 +73,8 @@ function showWeather(response) {
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   currentIcon.setAttribute("alt", `${response.data.weather[0].description}`);
+
+  getForecast(response.data.coord);
 }
 
 // Retrieves the weather information from OpenWeather API for the city submitted into the search engine
@@ -77,7 +85,7 @@ function getWeather(location) {
   let city = `${location}`;
   let unit = "metric";
   let apiUrl = `${apiEndpoint}?q=${city}&units=${unit}&appid=${apiKey}`;
-  axios.get(apiUrl).then(showWeather);
+  axios.get(apiUrl).then(showWeatherForecast);
 }
 
 // Finds the city that was submitted into the search engine and sends that information to the OpenWeather API request
@@ -155,7 +163,8 @@ celsiusLink.addEventListener("click", showCelsiusTemperature);
 
 // Displays Weather Forecast
 
-function showWeatherForecast() {
+function showWeatherForecast(response) {
+  console.log(response.data.daily);
   let forecast = document.querySelector("#weather-forecast");
   let forecastHTML = `<div class="row justify-content-left">`;
   let days = ["Thu", "Fri", "Sat", "Sun", "Fri"];
@@ -175,5 +184,3 @@ function showWeatherForecast() {
     forecast.innerHTML = forecastHTML;
   });
 }
-
-showWeatherForecast();
