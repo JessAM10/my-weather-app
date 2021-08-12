@@ -82,9 +82,8 @@ function showWeather(response) {
 function getWeather(location) {
   let apiKey = "0ced109d1b3107e21ab8ab47c9cb6bab";
   let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
-  let city = `${location}`;
   let unit = "metric";
-  let apiUrl = `${apiEndpoint}?q=${city}&units=${unit}&appid=${apiKey}`;
+  let apiUrl = `${apiEndpoint}?q=${location}&units=${unit}&appid=${apiKey}`;
   axios.get(apiUrl).then(showWeather);
 }
 
@@ -199,12 +198,5 @@ function showWeatherForecast(response) {
   });
 }
 
-// Get the weather of the cities that are in Other Destinations
-function getLinkWeather(event) {
-  event.preventDefault();
-  let city = "Tokyo";
-  getWeather(city);
-}
-
 let tokyoLink = document.querySelector("#tokyo");
-tokyoLink.addEventListener("click", getLinkWeather);
+tokyoLink.addEventListener("clicked", getWeather(tokyo));
