@@ -198,3 +198,13 @@ function showWeatherForecast(response) {
     }
   });
 }
+
+// Get the weather of the cities that are in Other Destinations
+function getLinkWeather(event) {
+  event.preventDefault();
+  let city = "Tokyo";
+  getWeather(city);
+}
+
+let tokyoLink = document.querySelector("#tokyo");
+tokyoLink.addEventListener("click", getLinkWeather);

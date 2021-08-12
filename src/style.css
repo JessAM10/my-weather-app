@@ -169,6 +169,11 @@ li {
   letter-spacing: 2px;
 }
 
+.other-destinations-list a {
+  color: black;
+  text-decoration: none;
+}
+
 .other-destinations-list:hover {
   text-decoration: underline;
   cursor: pointer;
