@@ -85,7 +85,7 @@ function getWeather(location) {
   let city = `${location}`;
   let unit = "metric";
   let apiUrl = `${apiEndpoint}?q=${city}&units=${unit}&appid=${apiKey}`;
-  axios.get(apiUrl).then(showWeatherForecast);
+  axios.get(apiUrl).then(showWeather);
 }
 
 // Finds the city that was submitted into the search engine and sends that information to the OpenWeather API request
@@ -163,24 +163,39 @@ celsiusLink.addEventListener("click", showCelsiusTemperature);
 
 // Displays Weather Forecast
 
-function showWeatherForecast(response) {
-  console.log(response.data.daily);
-  let forecast = document.querySelector("#weather-forecast");
-  let forecastHTML = `<div class="row justify-content-left">`;
-  let days = ["Thu", "Fri", "Sat", "Sun", "Fri"];
+function formatForecastDate(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let day = date.getDay();
+  return days[day];
+}
 
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `<div class="col-2 forecast">
-      <div class="weather-forecast-date">Thu</div>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Sun.svg" alt="" width="36">
-       <div class="weather-forecast-temperature"> <span class="temperature-high">  18°</span>
-       <span class="temperature-low">12°</span>
+function showWeatherForecast(response) {
+  console.log(response.data);
+  let forecast = response.data.daily;
+  let forecastElement = document.querySelector("#weather-forecast");
+  let forecastHTML = `<div class="row justify-content-left">`;
+
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 5) {
+      forecastHTML =
+        forecastHTML +
+        `<div class="col-2 forecast">
+      <div class="weather-forecast-date">${formatForecastDate(
+        forecastDay.dt
+      )}</div>
+        <img src=" http://openweathermap.org/img/wn/${
+          forecastDay.weather[0].icon
+        }@2x.png" alt="" width="36">
+       <div class="weather-forecast-temperature"> <span class="temperature-high">  ${Math.round(
+         forecastDay.temp.max
+       )}°</span>
+       <span class="temperature-low">${Math.round(forecastDay.temp.min)}°</span>
        </div>
 `;
-    forecastHTML = forecastHTML + `</div>`;
+      forecastHTML = forecastHTML + `</div>`;
 
-    forecast.innerHTML = forecastHTML;
+      forecastElement.innerHTML = forecastHTML;
+    }
   });
 }
