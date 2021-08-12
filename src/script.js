@@ -41,14 +41,14 @@ function getForecast(coordinates) {
 }
 
 function showWeather(response) {
-  let cityName = document.querySelector("#current-city");
-  let currentTemp = document.querySelector("#current-temp");
-  let feelsLike = document.querySelector("#feels-like");
-  let currentDescription = document.querySelector("#current-description");
+  let cityName = document.querySelector("#currentCity");
+  let currentTemp = document.querySelector("#currentTemp");
+  let feelsLike = document.querySelector("#feelsLike");
+  let currentDescription = document.querySelector("#currentDescription");
   let currentHumidity = document.querySelector("#humidity");
   let windSpeed = document.querySelector("#wind");
   let lastUpdated = document.querySelector("#date");
-  let currentIcon = document.querySelector("#current-icon");
+  let currentIcon = document.querySelector("#currentIcon");
 
   celsiusTemperature = response.data.main.temp;
 
@@ -92,14 +92,14 @@ function getWeather(location) {
 
 function handleSubmit(event) {
   event.preventDefault();
-  let destinationInput = document.querySelector("#search-destination-input");
+  let destinationInput = document.querySelector("#searchDestinationInput");
   let cityName = `${destinationInput.value}`;
   getWeather(cityName);
 }
 
 // Watches if any input gets submitted into the search engine
 
-let searchForDestination = document.querySelector("#search-for-destination");
+let searchForDestination = document.querySelector("#searchForDestination");
 searchForDestination.addEventListener("submit", handleSubmit);
 
 // Allows Montreal to be the default location on load
@@ -129,28 +129,28 @@ function getCurrentLocation(event) {
   navigator.geolocation.getCurrentPosition(searchLocation);
 }
 
-let currentLocationButton = document.querySelector("#current-location-button");
+let currentLocationButton = document.querySelector("#currentLocationButton");
 currentLocationButton.addEventListener("click", getCurrentLocation);
 
 // Converts temperature to Fahrenheit
 
 function showFahrenheitTemperature(event) {
   event.preventDefault();
-  let currentTemp = document.querySelector("#current-temp");
+  let currentTemp = document.querySelector("#currentTemp");
   celsiusLink.classList.remove("active");
   fahrenheitLink.classList.add("active");
   let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
   currentTemp.innerHTML = Math.round(fahrenheitTemperature);
 }
 
-let fahrenheitLink = document.querySelector("#fahrenheit-unit");
+let fahrenheitLink = document.querySelector("#fahrenheitUnit");
 fahrenheitLink.addEventListener("click", showFahrenheitTemperature);
 
 // Converts temperature to Celsius
 
 function showCelsiusTemperature(event) {
   event.preventDefault();
-  let currentTemp = document.querySelector("#current-temp");
+  let currentTemp = document.querySelector("#currentTemp");
   currentTemp.innerHTML = Math.round(celsiusTemperature);
   celsiusLink.classList.add("active");
   fahrenheitLink.classList.remove("active");
@@ -158,7 +158,7 @@ function showCelsiusTemperature(event) {
 
 let celsiusTemperature = null;
 
-let celsiusLink = document.querySelector("#celsius-unit");
+let celsiusLink = document.querySelector("#celsiusUnit");
 celsiusLink.addEventListener("click", showCelsiusTemperature);
 
 // Displays Weather Forecast
@@ -172,7 +172,7 @@ function formatForecastDate(timestamp) {
 
 function showWeatherForecast(response) {
   let forecast = response.data.daily;
-  let forecastElement = document.querySelector("#weather-forecast");
+  let forecastElement = document.querySelector("#weatherForecast");
   let forecastHTML = `<div class="row justify-content-left">`;
 
   forecast.forEach(function (forecastDay, index) {

@@ -33,26 +33,26 @@
         </div>
 
         <div class="col-6 current-location">
-          <span class="current-location-name" id="current-city"> Montreal </span
+          <span class="current-location-name" id="currentCity"> Montreal </span
           ><br />
           <span class="last-updated" id="date"> </span>
           <div class="current-location-description">
-            <span class="current-description" id="current-description"></span>
+            <span class="current-description" id="currentDescription"></span>
           </div>
           <div class="col-4 feels-like">
-            <span class="feels-like" id="feels-like"></span>
+            <span class="feels-like" id="feelsLike"></span>
           </div>
         </div>
 
         <div class="row">
           <div class="col-4 current-weather">
-            <img src="#" alt="" id="current-icon" class="current-icon" />
+            <img src="#" alt="" id="currentIcon" class="currentIcon" />
             <span class="current-temp">
-              <span id="current-temp"></span>
+              <span id="currentTemp"></span>
             </span>
             <span class="units"
-              ><a href="#" class="celsius-unit active" id="celsius-unit">°C</a>
-              |<a href="#" class="fahrenheit-unit" id="fahrenheit-unit">°F</a>
+              ><a href="#" class="celsius-unit active" id="celsiusUnit">°C</a>
+              |<a href="#" class="fahrenheit-unit" id="fahrenheitUnit">°F</a>
             </span>
           </div>
           <div class="col-3 align-items-start weather-details">
@@ -62,20 +62,20 @@
             </ul>
           </div>
           <div class="col-5">
-            <form id="search-for-destination">
+            <form id="searchForDestination">
               <div class="form-group fg--search search-bar">
                 <input
                   type="text"
                   class="input"
                   placeholder="Find your destination"
-                  id="search-destination-input"
+                  id="searchDestinationInput"
                   autocomplete="off"
                 />
                 <button type="submit">
                   <i class="fa fa-search magnifying-glass"></i>
                 </button>
                 <div class="current-location-button">
-                  <button id="current-location-button">
+                  <button id="currentLocationButton">
                     <i class="fas fa-map-pin"></i>
                   </button>
                 </div>
@@ -104,10 +104,8 @@
       </div>
       <!-- The following graph is a screencap from Google as a placeholder because I don't know how to make that yet. 
         The corresponding hour of the day would be at the bottom of each temperature.  -->
-      <div class="graph">
-        <img src="images/graph.png" alt="temperature graph" class="graph" />
-      </div>
-      <div id="weather-forecast"></div>
+      <canvas id="myChart"> </canvas>
+      <div id="weatherForecast"></div>
 
       <!-- This is where I'd like to put a gps map with live info but I don't know how to do that yet -->
       <div class="row">
