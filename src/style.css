@@ -163,11 +163,7 @@ input:placeholder-shown {
   bottom: 90px;
   padding: 10px;
   border-radius: 10px;
-  background: radial-gradient(
-    circle at 0.7% 1%,
-    rgb(215, 248, 247, 0.2) 0%,
-    rgb(102, 188, 239, 0.2) 100.2%
-  );
+  background: transparent;
 }
 
 .other-destinations-list {
