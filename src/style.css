@@ -46,6 +46,7 @@ li {
     rgb(177, 223, 252, 0.6) 3.3%,
     rgb(226, 235, 255, 0.6) 109.6%
   );
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
 }
 
 .weather-title {
@@ -77,12 +78,6 @@ li {
   top: 20px;
   left: 40px;
 }
-.current-icon {
-  font-size: 80px;
-  position: relative;
-  top: 10px;
-}
-
 .current-weather {
   position: relative;
   bottom: 10px;
@@ -90,16 +85,22 @@ li {
   font-size: 40px;
 }
 
+.current-weather img {
+  width: 100px;
+}
+
 .current-temp {
   font-size: 60px;
   position: relative;
-  top: 20px;
+  top: 5px;
 }
 
+.units {
+  bottom: 20px;
+}
 .fahrenheit-unit,
 .celsius-unit {
   position: relative;
-  top: 1px;
 }
 .current-description {
   text-transform: capitalize;
@@ -112,8 +113,8 @@ li {
 .feels-like {
   position: relative;
   color: #808080;
-  top: 43px;
-  left: 50px;
+  top: 40px;
+  left: 55px;
   font-size: 12px;
 }
 .fahrenheit-unit,
@@ -137,15 +138,18 @@ li {
 .weather-details {
   font-size: 15px;
   position: relative;
-  bottom: 50px;
-  left: 80px;
+  right: 10px;
   letter-spacing: 1px;
 }
 
 .search-bar {
   position: relative;
-  left: 130px;
+  left: 150px;
   bottom: 100px;
+}
+
+input:placeholder-shown {
+  font-style: italic;
 }
 
 .other-destinations {
@@ -155,7 +159,7 @@ li {
   position: relative;
   border: 2px solid rgba(0, 0, 0, 0.5);
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
-  left: 120px;
+  left: 155px;
   bottom: 90px;
   padding: 10px;
   border-radius: 10px;
@@ -199,14 +203,6 @@ li {
   display: inline;
 }
 
-.graph {
-  text-align: center;
-  position: relative;
-  bottom: 160px;
-  right: 30px;
-  max-width: 70%;
-}
-
 .forecast {
   max-width: 150px;
   text-align: center;
@@ -222,10 +218,6 @@ li {
 
 .temperature-high {
   font-weight: bold;
-}
-
-.emoji {
-  font-size: 30px;
 }
 
 .open-source {
