@@ -1,6 +1,10 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.5;
+  background-image: url(../images/plane.jpg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: left;
 }
 h1,
 h2 {
@@ -39,8 +43,8 @@ li {
   border: 2px solid black;
   background: linear-gradient(
     178.6deg,
-    rgb(177, 223, 252) 3.3%,
-    rgb(226, 235, 255) 109.6%
+    rgb(177, 223, 252, 0.6) 3.3%,
+    rgb(226, 235, 255, 0.6) 109.6%
   );
 }
 
@@ -133,7 +137,7 @@ li {
 .weather-details {
   font-size: 15px;
   position: relative;
-  top: 50px;
+  bottom: 50px;
   left: 80px;
   letter-spacing: 1px;
 }
@@ -149,7 +153,7 @@ li {
   font-size: 20px;
   width: 300px;
   position: relative;
-  border: 2px solid black;
+  border: 2px solid rgba(0, 0, 0, 0.5);
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
   left: 120px;
   bottom: 90px;
@@ -157,14 +161,14 @@ li {
   border-radius: 10px;
   background: radial-gradient(
     circle at 0.7% 1%,
-    rgb(215, 248, 247) 0%,
-    rgb(102, 188, 239) 100.2%
+    rgb(215, 248, 247, 0.2) 0%,
+    rgb(102, 188, 239, 0.2) 100.2%
   );
 }
 
 .other-destinations-list {
   text-align: center;
-  padding: 8px 0;
+  padding: 20px 0;
   font-weight: bold;
   letter-spacing: 2px;
 }
@@ -222,18 +226,6 @@ li {
 
 .emoji {
   font-size: 30px;
-}
-.map {
-  border: 2px solid black;
-  width: 800px;
-  height: 300px;
-  display: block;
-  margin: 0 auto;
-  position: relative;
-  bottom: 200px;
-  border-radius: 10px;
-  padding: 0;
-  background: transparent;
 }
 
 .open-source {

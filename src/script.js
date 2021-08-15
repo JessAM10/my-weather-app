@@ -40,18 +40,6 @@ function getForecast(coordinates) {
   axios.get(apiUrl).then(showWeatherForecast);
 }
 
-function showHourlyTemperature(response) {}
-
-function showMap(response) {
-  let map = document.querySelector("#map");
-}
-
-function getMap() {
-  let apiKey = "0ced109d1b3107e21ab8ab47c9cb6bab";
-  let apiUrl = `https://maps.openweathermap.org/maps/2.0/weather/1h/TA2/4/1/6?appid=${apiKey}`;
-  axios.get(apiUrl).then(showMap);
-}
-
 function showWeather(response) {
   let cityName = document.querySelector("#currentCity");
   let currentTemp = document.querySelector("#currentTemp");
