@@ -62,7 +62,7 @@ function showWeather(response) {
 
   currentDescription.innerHTML = `${response.data.weather[0].description}`;
 
-  currentHumidity.innerHTML = `Humidity: ${response.data.main.humidity}%`;
+  currentHumidity.innerHTML = `${response.data.main.humidity}%`;
 
   windSpeed.innerHTML = `${Math.round((response.data.wind.speed * 18) / 5)}`;
 
