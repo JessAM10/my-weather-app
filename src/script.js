@@ -200,11 +200,47 @@ function showWeatherForecast(response) {
 }
 
 // Get the weather of the cities that are in Other Destinations
-function getLinkWeather(event) {
+function getTokyokWeather(event) {
   event.preventDefault();
   let city = "Tokyo";
   getWeather(city);
 }
 
+function getAmsterdamWeather(event) {
+  event.preventDefault();
+  let city = "Amsterdam";
+  getWeather(city);
+}
+
+function getBuenosAiresWeather(event) {
+  event.preventDefault();
+  let city = "Buenos Aires";
+  getWeather(city);
+}
+
+function getFlorenceWeather(event) {
+  event.preventDefault();
+  let city = "Florence";
+  getWeather(city);
+}
+
+function getLondonWeather(event) {
+  event.preventDefault();
+  let city = "London";
+  getWeather(city);
+}
+
 let tokyoLink = document.querySelector("#tokyo");
-tokyoLink.addEventListener("click", getLinkWeather);
+tokyoLink.addEventListener("click", getTokyokWeather);
+
+let amsterdamLink = document.querySelector("#amsterdam");
+amsterdamLink.addEventListener("click", getAmsterdamWeather);
+
+let buenosAiresLink = document.querySelector("#buenosAires");
+buenosAiresLink.addEventListener("click", getBuenosAiresWeather);
+
+let florenceLink = document.querySelector("#florence");
+florenceLink.addEventListener("click", getFlorenceWeather);
+
+let londonLink = document.querySelector("#london");
+londonLink.addEventListener("click", getLondonWeather);
