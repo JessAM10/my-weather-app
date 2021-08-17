@@ -41,14 +41,14 @@ function getForecast(coordinates) {
 }
 
 function showWeather(response) {
-  let cityName = document.querySelector("#currentCity");
-  let currentTemp = document.querySelector("#currentTemp");
-  let feelsLike = document.querySelector("#feelsLike");
-  let currentDescription = document.querySelector("#currentDescription");
+  let cityName = document.querySelector("#current-city");
+  let currentTemp = document.querySelector("#current-temp");
+  let feelsLike = document.querySelector("#feels-like");
+  let currentDescription = document.querySelector("#current-description");
   let currentHumidity = document.querySelector("#humidity");
   let windSpeed = document.querySelector("#wind");
   let lastUpdated = document.querySelector("#date");
-  let currentIcon = document.querySelector("#currentIcon");
+  let currentIcon = document.querySelector("#current-icon");
 
   celsiusTemperature = response.data.main.temp;
 
@@ -73,6 +73,9 @@ function showWeather(response) {
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   currentIcon.setAttribute("alt", `${response.data.weather[0].description}`);
+
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
 
   getForecast(response.data.coord);
 }
@@ -99,7 +102,7 @@ function handleSubmit(event) {
 
 // Watches if any input gets submitted into the search engine
 
-let searchForDestination = document.querySelector("#searchForDestination");
+let searchForDestination = document.querySelector("#search-for-destination");
 searchForDestination.addEventListener("submit", handleSubmit);
 
 // Allows Montreal to be the default location on load
@@ -129,28 +132,30 @@ function getCurrentLocation(event) {
   navigator.geolocation.getCurrentPosition(searchLocation);
 }
 
-let currentLocationButton = document.querySelector("#currentLocationButton");
+let currentLocationButton = document.querySelector("#current-location-button");
 currentLocationButton.addEventListener("click", getCurrentLocation);
 
 // Converts temperature to Fahrenheit
 
 function showFahrenheitTemperature(event) {
   event.preventDefault();
-  let currentTemp = document.querySelector("#currentTemp");
+  let currentTemp = document.querySelector("#current-temp");
   celsiusLink.classList.remove("active");
   fahrenheitLink.classList.add("active");
   let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
   currentTemp.innerHTML = Math.round(fahrenheitTemperature);
+
+  // let forecastTemp =
 }
 
-let fahrenheitLink = document.querySelector("#fahrenheitUnit");
+let fahrenheitLink = document.querySelector("#fahrenheit-unit");
 fahrenheitLink.addEventListener("click", showFahrenheitTemperature);
 
 // Converts temperature to Celsius
 
 function showCelsiusTemperature(event) {
   event.preventDefault();
-  let currentTemp = document.querySelector("#currentTemp");
+  let currentTemp = document.querySelector("#current-temp");
   currentTemp.innerHTML = Math.round(celsiusTemperature);
   celsiusLink.classList.add("active");
   fahrenheitLink.classList.remove("active");
@@ -158,7 +163,7 @@ function showCelsiusTemperature(event) {
 
 let celsiusTemperature = null;
 
-let celsiusLink = document.querySelector("#celsiusUnit");
+let celsiusLink = document.querySelector("#celsius-unit");
 celsiusLink.addEventListener("click", showCelsiusTemperature);
 
 // Displays Weather Forecast
@@ -172,7 +177,7 @@ function formatForecastDate(timestamp) {
 
 function showWeatherForecast(response) {
   let forecast = response.data.daily;
-  let forecastElement = document.querySelector("#weatherForecast");
+  let forecastElement = document.querySelector("#weather-forecast");
   let forecastHTML = `<div class="row justify-content-left">`;
 
   forecast.forEach(function (forecastDay, index) {
@@ -236,7 +241,7 @@ tokyoLink.addEventListener("click", getTokyokWeather);
 let amsterdamLink = document.querySelector("#amsterdam");
 amsterdamLink.addEventListener("click", getAmsterdamWeather);
 
-let buenosAiresLink = document.querySelector("#buenosAires");
+let buenosAiresLink = document.querySelector("#buenos-aires");
 buenosAiresLink.addEventListener("click", getBuenosAiresWeather);
 
 let florenceLink = document.querySelector("#florence");

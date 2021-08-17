@@ -43,9 +43,10 @@ li {
   border: 2px solid black;
   background: linear-gradient(
     178.6deg,
-    rgb(177, 223, 252, 0.6) 3.3%,
-    rgb(226, 235, 255, 0.6) 109.6%
+    rgba(177, 223, 252, 0.507) 3.3%,
+    rgba(226, 235, 255, 0.507) 109.6%
   );
+  /* background-color: rgb(255, 255, 255) */
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
 }
 
