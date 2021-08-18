@@ -51,6 +51,7 @@ function showWeather(response) {
   let currentIcon = document.querySelector("#current-icon");
 
   celsiusTemperature = response.data.main.temp;
+  imperialWindSpeed = response.data.wind.speed;
 
   cityName.innerHTML = `${response.data.name}`;
 
@@ -64,7 +65,9 @@ function showWeather(response) {
 
   currentHumidity.innerHTML = `${response.data.main.humidity}%`;
 
-  windSpeed.innerHTML = `${Math.round((response.data.wind.speed * 18) / 5)}`;
+  windSpeed.innerHTML = `${Math.round(
+    (response.data.wind.speed * 18) / 5
+  )}  km/h`;
 
   lastUpdated.innerHTML = formatDate(response.data.dt * 1000);
 
@@ -95,7 +98,7 @@ function getWeather(location) {
 
 function handleSubmit(event) {
   event.preventDefault();
-  let destinationInput = document.querySelector("#searchDestinationInput");
+  let destinationInput = document.querySelector("#search-destination-input");
   let cityName = `${destinationInput.value}`;
   getWeather(cityName);
 }
@@ -140,12 +143,13 @@ currentLocationButton.addEventListener("click", getCurrentLocation);
 function showFahrenheitTemperature(event) {
   event.preventDefault();
   let currentTemp = document.querySelector("#current-temp");
+  let wind = document.querySelector("#wind");
   celsiusLink.classList.remove("active");
   fahrenheitLink.classList.add("active");
   let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  let imperialWind = imperialWindSpeed * 2.237;
   currentTemp.innerHTML = Math.round(fahrenheitTemperature);
-
-  // let forecastTemp =
+  wind.innerHTML = `${Math.round(imperialWindSpeed)} mph`;
 }
 
 let fahrenheitLink = document.querySelector("#fahrenheit-unit");
@@ -162,6 +166,7 @@ function showCelsiusTemperature(event) {
 }
 
 let celsiusTemperature = null;
+let imperialWindSpeed = null;
 
 let celsiusLink = document.querySelector("#celsius-unit");
 celsiusLink.addEventListener("click", showCelsiusTemperature);
