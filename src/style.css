@@ -99,6 +99,11 @@ li {
 .units {
   bottom: 20px;
 }
+
+.units a {
+  color: #ec6e4c;
+}
+
 .fahrenheit-unit,
 .celsius-unit {
   position: relative;
