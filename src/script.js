@@ -51,7 +51,8 @@ function showWeather(response) {
   let currentIcon = document.querySelector("#current-icon");
 
   celsiusTemperature = response.data.main.temp;
-  imperialWindSpeed = response.data.wind.speed;
+  metricWindSpeed = response.data.wind.speed;
+  celsiusFeelsLike = response.data.main.feels_like;
 
   cityName.innerHTML = `${response.data.name}`;
 
@@ -140,36 +141,44 @@ currentLocationButton.addEventListener("click", getCurrentLocation);
 
 // Converts temperature to Fahrenheit
 
-function showFahrenheitTemperature(event) {
+function showImperialUnits(event) {
   event.preventDefault();
   let currentTemp = document.querySelector("#current-temp");
   let wind = document.querySelector("#wind");
+  let feelsLikeTemp = document.querySelector("#feels-like");
   celsiusLink.classList.remove("active");
   fahrenheitLink.classList.add("active");
+  let fahrenheitFeelsLike = (celsiusFeelsLike * 9) / 5 + 32;
   let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
-  let imperialWind = imperialWindSpeed * 2.237;
+  let imperialWind = metricWindSpeed * 2.237;
   currentTemp.innerHTML = Math.round(fahrenheitTemperature);
-  wind.innerHTML = `${Math.round(imperialWindSpeed)} mph`;
+  wind.innerHTML = `${Math.round(metricWindSpeed)} mph`;
+  feelsLikeTemp.innerHTML = `Feels like ${Math.round(fahrenheitFeelsLike)}°F`;
 }
 
 let fahrenheitLink = document.querySelector("#fahrenheit-unit");
-fahrenheitLink.addEventListener("click", showFahrenheitTemperature);
+fahrenheitLink.addEventListener("click", showImperialUnits);
 
 // Converts temperature to Celsius
 
-function showCelsiusTemperature(event) {
+function showCelsiusUnits(event) {
   event.preventDefault();
   let currentTemp = document.querySelector("#current-temp");
+  let wind = document.querySelector("#wind");
+  let feelsLike = document.querySelector("#feels-like");
   currentTemp.innerHTML = Math.round(celsiusTemperature);
+  wind.innerHTML = ` ${Math.round((metricWindSpeed * 18) / 5)} km/h`;
+  feelsLike.innerHTML = `Feels like ${Math.round(celsiusFeelsLike)}°C`;
   celsiusLink.classList.add("active");
   fahrenheitLink.classList.remove("active");
 }
 
 let celsiusTemperature = null;
-let imperialWindSpeed = null;
+let metricWindSpeed = null;
+let celsiusFeelsLike = null;
 
 let celsiusLink = document.querySelector("#celsius-unit");
-celsiusLink.addEventListener("click", showCelsiusTemperature);
+celsiusLink.addEventListener("click", showCelsiusUnits);
 
 // Displays Weather Forecast
 
