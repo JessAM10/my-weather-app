@@ -68,10 +68,13 @@ function showWeather(response) {
 
   currentHumidity.innerHTML = `${response.data.main.humidity}%`;
 
-  windSpeed.innerHTML = `${Math.round(
-    (response.data.wind.speed * 18) / 5
-  )}  km/h`;
-
+  if (element.classList.contains("active")) {
+    windSpeed.innerHTML = `${Math.round(
+      (response.data.wind.speed * 18) / 5
+    )}  km/h`;
+  } else {
+    windSpeed.innerHTML = `${Math.round(response.data.wind.speed)} mph`;
+  }
   lastUpdated.innerHTML = formatDate(response.data.dt * 1000);
 
   currentIcon.setAttribute(
@@ -80,8 +83,8 @@ function showWeather(response) {
   );
   currentIcon.setAttribute("alt", `${response.data.weather[0].description}`);
 
-  celsiusLink.classList.add("active");
-  fahrenheitLink.classList.remove("active");
+  // celsiusLink.classList.add("active");
+  // fahrenheitLink.classList.remove("active");
 
   getForecast(response.data.coord);
 }
@@ -137,41 +140,97 @@ currentLocationButton.addEventListener("click", getCurrentLocation);
 
 // Converts units to imperial
 
-function showImperialUnits(event) {
-  event.preventDefault();
+function getMetricForecast(response) {
+  let dailyForcastUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${response.lat}&lon=${response.lon}&exclude=minutely&appid=${apiKey}&units=metric`;
+  axios.get(dailyForcastUrl).then(showWeatherForecast);
+}
+
+function getImperialForecast(response) {
+  let dailyForcastUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${response.lat}&lon=${response.lon}&exclude=minutely&appid=${apiKey}&units=imperial`;
+  axios.get(dailyForcastUrl).then(showWeatherForecast);
+}
+
+function replaceTemp(response) {
+  let cityName = document.querySelector("#current-city");
   let currentTemp = document.querySelector("#current-temp");
-  let wind = document.querySelector("#wind");
-  let feelsLikeTemp = document.querySelector("#feels-like");
+  let feelsLike = document.querySelector("#feels-like");
+  let currentDescription = document.querySelector("#current-description");
+  let currentHumidity = document.querySelector("#humidity");
+  let windSpeed = document.querySelector("#wind");
+  let lastUpdated = document.querySelector("#date");
+  let currentIcon = document.querySelector("#current-icon");
+
+  temperature = response.data.main.temp;
+  imperialWindSpeed = response.data.wind.speed;
+  imperialFeelsLike = response.data.main.feels_like;
+
+  cityName.innerHTML = `${response.data.name}`;
+
+  currentTemp.innerHTML = Math.round(`${temperature}`);
+
+  feelsLike.innerHTML = `Feels like ${Math.round(
+    response.data.main.feels_like
+  )}°C`;
+
+  currentDescription.innerHTML = `${response.data.weather[0].description}`;
+
+  currentHumidity.innerHTML = `${response.data.main.humidity}%`;
+
+  if (element.classList.contains("active")) {
+    windSpeed.innerHTML = `${Math.round(
+      (response.data.wind.speed * 18) / 5
+    )}  km/h`;
+  } else {
+    windSpeed.innerHTML = `${Math.round(response.data.wind.speed)} mph`;
+  }
+
+  lastUpdated.innerHTML = formatDate(response.data.dt * 1000);
+
+  currentIcon.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  currentIcon.setAttribute("alt", `${response.data.weather[0].description}`);
+
+  if (element.classList.contains("active")) {
+    getMetricForecast(response.data.coord);
+  } else {
+    getImperialForecast(response.data.coord);
+  }
+}
+
+let element = document.querySelector("#celsius-unit");
+
+function getImperialUnits(event) {
+  event.preventDefault();
+  unit = "imperial";
   celsiusLink.classList.remove("active");
   fahrenheitLink.classList.add("active");
-  let fahrenheitFeelsLike = (celsiusFeelsLike * 9) / 5 + 32;
-  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
-  let imperialWind = metricWindSpeed * 2.237;
-  currentTemp.innerHTML = Math.round(fahrenheitTemperature);
-  wind.innerHTML = `${Math.round(metricWindSpeed)} mph`;
-  feelsLikeTemp.innerHTML = `Feels like ${Math.round(fahrenheitFeelsLike)}°F`;
+
+  let cityDisplayed = document.querySelector("#current-city");
+  let city = cityDisplayed.innerHTML;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit}&appid=${apiKey}`;
+  axios.get(apiUrl).then(replaceTemp);
+
+  let windUnit = document.querySelector("#wind");
+  windUnit.innerHTML = `mph`;
 }
 
 let fahrenheitLink = document.querySelector("#fahrenheit-unit");
-fahrenheitLink.addEventListener("click", showImperialUnits);
+fahrenheitLink.addEventListener("click", getImperialUnits);
 
 // Converts units to metric
 
 function showMetricUnits(event) {
   event.preventDefault();
-  let currentTemp = document.querySelector("#current-temp");
-  let wind = document.querySelector("#wind");
-  let feelsLike = document.querySelector("#feels-like");
-  currentTemp.innerHTML = Math.round(celsiusTemperature);
-  wind.innerHTML = ` ${Math.round((metricWindSpeed * 18) / 5)} km/h`;
-  feelsLike.innerHTML = `Feels like ${Math.round(celsiusFeelsLike)}°C`;
   celsiusLink.classList.add("active");
   fahrenheitLink.classList.remove("active");
+  unit = "metric";
+  let cityDisplayed = document.querySelector("#current-city");
+  let city = cityDisplayed.innerHTML;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit}&appid=${apiKey}`;
+  axios.get(apiUrl).then(replaceTemp);
 }
-
-let celsiusTemperature = null;
-let metricWindSpeed = null;
-let celsiusFeelsLike = null;
 
 let celsiusLink = document.querySelector("#celsius-unit");
 celsiusLink.addEventListener("click", showMetricUnits);
