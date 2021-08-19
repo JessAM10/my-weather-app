@@ -139,7 +139,7 @@ function getCurrentLocation(event) {
 let currentLocationButton = document.querySelector("#current-location-button");
 currentLocationButton.addEventListener("click", getCurrentLocation);
 
-// Converts temperature to Fahrenheit
+// Converts units to imperial
 
 function showImperialUnits(event) {
   event.preventDefault();
@@ -159,9 +159,9 @@ function showImperialUnits(event) {
 let fahrenheitLink = document.querySelector("#fahrenheit-unit");
 fahrenheitLink.addEventListener("click", showImperialUnits);
 
-// Converts temperature to Celsius
+// Converts units to metric
 
-function showCelsiusUnits(event) {
+function showMetricUnits(event) {
   event.preventDefault();
   let currentTemp = document.querySelector("#current-temp");
   let wind = document.querySelector("#wind");
@@ -178,7 +178,7 @@ let metricWindSpeed = null;
 let celsiusFeelsLike = null;
 
 let celsiusLink = document.querySelector("#celsius-unit");
-celsiusLink.addEventListener("click", showCelsiusUnits);
+celsiusLink.addEventListener("click", showMetricUnits);
 
 // Displays Weather Forecast
 
@@ -196,9 +196,7 @@ function showWeatherForecast(response) {
 
   forecast.forEach(function (forecastDay, index) {
     if (index < 5) {
-      forecastHTML =
-        forecastHTML +
-        `<div class="col-2 forecast">
+      forecastHTML += `<div class="col-2 forecast">
       <div class="weather-forecast-date">${formatForecastDate(
         forecastDay.dt
       )}</div>
