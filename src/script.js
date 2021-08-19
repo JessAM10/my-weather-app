@@ -1,3 +1,6 @@
+let apiKey = "0ced109d1b3107e21ab8ab47c9cb6bab";
+let unit = "metric";
+
 // Displays current date and time.
 
 function formatDate(timestamp) {
@@ -35,8 +38,7 @@ function formatDate(timestamp) {
 // Displays the name of the city, temperature, and more weather details about the city that was submitted in the search engine
 
 function getForecast(coordinates) {
-  let apiKey = "0ced109d1b3107e21ab8ab47c9cb6bab";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=${unit}`;
   axios.get(apiUrl).then(showWeatherForecast);
 }
 
@@ -87,10 +89,8 @@ function showWeather(response) {
 // Retrieves the weather information from OpenWeather API for the city submitted into the search engine
 
 function getWeather(location) {
-  let apiKey = "0ced109d1b3107e21ab8ab47c9cb6bab";
   let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
   let city = `${location}`;
-  let unit = "metric";
   let apiUrl = `${apiEndpoint}?q=${city}&units=${unit}&appid=${apiKey}`;
   axios.get(apiUrl).then(showWeather);
 }
@@ -112,9 +112,7 @@ searchForDestination.addEventListener("submit", handleSubmit);
 // Allows Montreal to be the default location on load
 
 function getDefaultCity(city) {
-  let apiKey = "0ced109d1b3107e21ab8ab47c9cb6bab";
   let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
-  let unit = "metric";
   let apiUrl = `${apiEndpoint}?q=${city}&units=${unit}&appid=${apiKey}`;
   axios.get(apiUrl).then(showWeather);
 }
@@ -124,9 +122,7 @@ getDefaultCity("Montreal");
 // Gets current location weather
 
 function searchLocation(position) {
-  let apiKey = "0ced109d1b3107e21ab8ab47c9cb6bab";
   let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
-  let unit = "metric";
   let apiUrl = `${apiEndpoint}?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=${unit}&appid=${apiKey}`;
   axios.get(apiUrl).then(showWeather);
 }
