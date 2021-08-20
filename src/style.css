@@ -1,5 +1,5 @@
 body {
-  font-family: "Arbutus Slab", sans-serif;
+  font-family: "Arbutus Slab", "Arial", sans-serif;
   line-height: 1.5;
   background-image: url(../images/plane.jpg);
   background-size: 100%;
@@ -61,12 +61,14 @@ li {
 .current-location-name {
   font-size: 60px;
   font-weight: bold;
+  letter-spacing: 3px;
   position: relative;
   right: 5px;
   text-transform: capitalize;
 }
 
 .last-updated {
+  font-family: "arial", sans-serif;
   position: relative;
   bottom: 15px;
   font-size: 11px;
@@ -149,6 +151,7 @@ li {
 }
 
 .search-bar {
+  font-family: "calibri", "arial", sans-serif;
   position: relative;
   left: 150px;
   bottom: 100px;
@@ -229,5 +232,9 @@ input:placeholder-shown {
 
 .github-link {
   text-decoration: none;
+  color: #ec6e4c;
+}
+
+.github-link:hover {
   color: #ec6e4c;
 }
