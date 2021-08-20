@@ -35,7 +35,8 @@ function formatDate(timestamp) {
   return `Updated on ${day}, ${month} ${dayNumber}, ${year} ${hour}:${minutes}`;
 }
 
-// Displays the name of the city, temperature, and more weather details about the city that was submitted in the search engine
+/* Displays the city name, temperature, and more weather details
+   Also calls the api for the weather forecast*/
 
 function getForecast(coordinates) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=${unit}`;
@@ -62,7 +63,7 @@ function showWeather(response) {
 
   feelsLike.innerHTML = `Feels like ${Math.round(
     response.data.main.feels_like
-  )}°C`;
+  )}°`;
 
   currentDescription.innerHTML = `${response.data.weather[0].description}`;
 
@@ -83,9 +84,6 @@ function showWeather(response) {
   );
   currentIcon.setAttribute("alt", `${response.data.weather[0].description}`);
 
-  // celsiusLink.classList.add("active");
-  // fahrenheitLink.classList.remove("active");
-
   getForecast(response.data.coord);
 }
 
@@ -98,7 +96,7 @@ function getWeather(location) {
   axios.get(apiUrl).then(showWeather);
 }
 
-// Finds the city that was submitted into the search engine and sends that information to the OpenWeather API request
+// Finds the city that was submitted into the search engine and sends that information to the OpenWeather API call
 
 function handleSubmit(event) {
   event.preventDefault();
@@ -122,7 +120,7 @@ function getDefaultCity(city) {
 
 getDefaultCity("Montreal");
 
-// Gets current location weather
+// Gets weather for current location
 
 function searchLocation(position) {
   let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
@@ -138,63 +136,42 @@ function getCurrentLocation(event) {
 let currentLocationButton = document.querySelector("#current-location-button");
 currentLocationButton.addEventListener("click", getCurrentLocation);
 
-// Converts units to imperial
+//Converts units back to metric from imperial
 
 function getMetricForecast(response) {
   let dailyForcastUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${response.lat}&lon=${response.lon}&exclude=minutely&appid=${apiKey}&units=metric`;
   axios.get(dailyForcastUrl).then(showWeatherForecast);
 }
+// Converts units to imperial
 
 function getImperialForecast(response) {
   let dailyForcastUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${response.lat}&lon=${response.lon}&exclude=minutely&appid=${apiKey}&units=imperial`;
   axios.get(dailyForcastUrl).then(showWeatherForecast);
 }
 
-function replaceTemp(response) {
-  let cityName = document.querySelector("#current-city");
+// Displays weather in either metric or imperial depending on which unit link was clicked
+
+function replaceUnits(response) {
   let currentTemp = document.querySelector("#current-temp");
   let feelsLike = document.querySelector("#feels-like");
-  let currentDescription = document.querySelector("#current-description");
-  let currentHumidity = document.querySelector("#humidity");
   let windSpeed = document.querySelector("#wind");
-  let lastUpdated = document.querySelector("#date");
-  let currentIcon = document.querySelector("#current-icon");
-
-  temperature = response.data.main.temp;
-  imperialWindSpeed = response.data.wind.speed;
-  imperialFeelsLike = response.data.main.feels_like;
-
-  cityName.innerHTML = `${response.data.name}`;
+  let temperature = response.data.main.temp;
 
   currentTemp.innerHTML = Math.round(`${temperature}`);
 
   feelsLike.innerHTML = `Feels like ${Math.round(
     response.data.main.feels_like
-  )}°C`;
-
-  currentDescription.innerHTML = `${response.data.weather[0].description}`;
-
-  currentHumidity.innerHTML = `${response.data.main.humidity}%`;
+  )}°`;
 
   if (element.classList.contains("active")) {
     windSpeed.innerHTML = `${Math.round(
       (response.data.wind.speed * 18) / 5
     )}  km/h`;
-  } else {
-    windSpeed.innerHTML = `${Math.round(response.data.wind.speed)} mph`;
-  }
 
-  lastUpdated.innerHTML = formatDate(response.data.dt * 1000);
-
-  currentIcon.setAttribute(
-    "src",
-    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
-  );
-  currentIcon.setAttribute("alt", `${response.data.weather[0].description}`);
-
-  if (element.classList.contains("active")) {
     getMetricForecast(response.data.coord);
   } else {
+    windSpeed.innerHTML = `${Math.round(response.data.wind.speed)} mph`;
+
     getImperialForecast(response.data.coord);
   }
 }
@@ -210,7 +187,7 @@ function getImperialUnits(event) {
   let cityDisplayed = document.querySelector("#current-city");
   let city = cityDisplayed.innerHTML;
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit}&appid=${apiKey}`;
-  axios.get(apiUrl).then(replaceTemp);
+  axios.get(apiUrl).then(replaceUnits);
 
   let windUnit = document.querySelector("#wind");
   windUnit.innerHTML = `mph`;
@@ -229,7 +206,7 @@ function showMetricUnits(event) {
   let cityDisplayed = document.querySelector("#current-city");
   let city = cityDisplayed.innerHTML;
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit}&appid=${apiKey}`;
-  axios.get(apiUrl).then(replaceTemp);
+  axios.get(apiUrl).then(replaceUnits);
 }
 
 let celsiusLink = document.querySelector("#celsius-unit");
@@ -272,6 +249,7 @@ function showWeatherForecast(response) {
 }
 
 // Get the weather of the cities that are in Other Destinations
+
 function getTokyokWeather(event) {
   event.preventDefault();
   let city = "Tokyo";

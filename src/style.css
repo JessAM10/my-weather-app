@@ -1,5 +1,5 @@
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Arbutus Slab", sans-serif;
   line-height: 1.5;
   background-image: url(../images/plane.jpg);
   background-size: 100%;
@@ -43,8 +43,8 @@ li {
   border: 2px solid black;
   background: linear-gradient(
     178.6deg,
-    rgba(177, 223, 252, 0.507) 3.3%,
-    rgba(226, 235, 255, 0.507) 109.6%
+    rgba(226, 235, 255, 0.507) 3.3%,
+    rgba(163, 215, 248, 0.507) 109.6%
   );
   /* background-color: rgb(255, 255, 255) */
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
@@ -229,4 +229,5 @@ input:placeholder-shown {
 
 .github-link {
   text-decoration: none;
+  color: #ec6e4c;
 }
