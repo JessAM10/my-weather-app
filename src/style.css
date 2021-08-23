@@ -158,6 +158,10 @@ li {
   bottom: 100px;
 }
 
+.input {
+  width: 235px;
+}
+
 input:placeholder-shown {
   font-style: italic;
 }
