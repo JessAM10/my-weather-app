@@ -234,6 +234,7 @@ input:placeholder-shown {
   margin-top: 10px;
   position: relative;
   bottom: 160px;
+  font-size: 12px;
 }
 
 .github-link,
